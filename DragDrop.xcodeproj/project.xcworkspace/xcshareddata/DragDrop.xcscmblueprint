@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4277C0982124839BC2A1011D844FD522B31B85A5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8033A6C22477E893BE9FF2D983494DF824EB5FAB" : 0,
+    "4277C0982124839BC2A1011D844FD522B31B85A5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E1F6F5AC-78B2-4530-9C03-E672AB1F3CCE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8033A6C22477E893BE9FF2D983494DF824EB5FAB" : "",
+    "4277C0982124839BC2A1011D844FD522B31B85A5" : "DragAndDropGame\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DragDrop",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DragDrop.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/happymanx\/DragAndDropGame.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4277C0982124839BC2A1011D844FD522B31B85A5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/HappyManx\/fatmeterble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8033A6C22477E893BE9FF2D983494DF824EB5FAB"
+    }
+  ]
+}
