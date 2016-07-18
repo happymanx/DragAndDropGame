@@ -7,7 +7,7 @@
 //
 
 #import "GameOverScene.h"
-#import "MyScene.h"
+#import "MainScene.h"
 //#import "HTSceneViewController.h"
 #import "AppDelegate.h"
 
@@ -167,7 +167,7 @@
         NSLog(@"press button_back_home_on");
         self.backButton.texture = [SKTexture textureWithImageNamed:@"button_back_home_off.png"];
         
-//        [[AppDelegate sharedAppDelegate].mainVC.sceneVC backAction];
+        [[AppDelegate sharedAppDelegate].mainVC.sceneVC backAction];
     }
     if ([node.name isEqualToString:@"button_play_again_on"]) {
         NSLog(@"press button_play_again_on");
@@ -175,7 +175,7 @@
         
         // 進入下一場
         SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:0.5];
-        MyScene *mainScene = [[MyScene alloc] initWithSize:self.size];
+        MainScene *mainScene = [[MainScene alloc] initWithSize:self.size];
         [self.view presentScene:mainScene transition:reveal];
     }
 }

@@ -15,8 +15,8 @@
 		35F3E03317D80D13009EFFF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3E03217D80D13009EFFF2 /* main.m */; };
 		35F3E03717D80D13009EFFF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3E03617D80D13009EFFF2 /* AppDelegate.m */; };
 		35F3E03A17D80D13009EFFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F3E03817D80D13009EFFF2 /* Main.storyboard */; };
-		35F3E03D17D80D13009EFFF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3E03C17D80D13009EFFF2 /* ViewController.m */; };
-		35F3E04017D80D13009EFFF2 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3E03F17D80D13009EFFF2 /* MyScene.m */; };
+		35F3E03D17D80D13009EFFF2 /* HTSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3E03C17D80D13009EFFF2 /* HTSceneViewController.m */; };
+		35F3E04017D80D13009EFFF2 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F3E03F17D80D13009EFFF2 /* MainScene.m */; };
 		35F3E04217D80D13009EFFF2 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F3E04117D80D13009EFFF2 /* Spaceship.png */; };
 		35F3E04417D80D13009EFFF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F3E04317D80D13009EFFF2 /* Images.xcassets */; };
 		35F3E04B17D80D13009EFFF2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F3E04A17D80D13009EFFF2 /* XCTest.framework */; };
@@ -83,6 +83,11 @@
 		960726431D38983D0092E14A /* word_time_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 960726161D38983D0092E14A /* word_time_blue.png */; };
 		960726441D38983D0092E14A /* word_time_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 960726171D38983D0092E14A /* word_time_brown.png */; };
 		96EF5E3C1D3C9FE1008CE6B2 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5E3B1D3C9FE1008CE6B2 /* GameOverScene.m */; };
+		96EF5E401D3CAAED008CE6B2 /* HTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5E3E1D3CAAED008CE6B2 /* HTMainViewController.m */; };
+		96EF5E411D3CAAED008CE6B2 /* HTMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5E3F1D3CAAED008CE6B2 /* HTMainViewController.xib */; };
+		96EF5E431D3CAAF4008CE6B2 /* HTSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5E421D3CAAF4008CE6B2 /* HTSceneViewController.xib */; };
+		96EF5E471D3CABB9008CE6B2 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5E451D3CABB9008CE6B2 /* background-music-aac.caf */; };
+		96EF5E481D3CABB9008CE6B2 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96EF5E461D3CABB9008CE6B2 /* pew-pew-lei.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,10 +113,10 @@
 		35F3E03517D80D13009EFFF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		35F3E03617D80D13009EFFF2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		35F3E03917D80D13009EFFF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		35F3E03B17D80D13009EFFF2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		35F3E03C17D80D13009EFFF2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		35F3E03E17D80D13009EFFF2 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
-		35F3E03F17D80D13009EFFF2 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		35F3E03B17D80D13009EFFF2 /* HTSceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTSceneViewController.h; sourceTree = "<group>"; };
+		35F3E03C17D80D13009EFFF2 /* HTSceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTSceneViewController.m; sourceTree = "<group>"; };
+		35F3E03E17D80D13009EFFF2 /* MainScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		35F3E03F17D80D13009EFFF2 /* MainScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
 		35F3E04117D80D13009EFFF2 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		35F3E04317D80D13009EFFF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		35F3E04917D80D13009EFFF2 /* DragDropTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragDropTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +184,12 @@
 		960726171D38983D0092E14A /* word_time_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = word_time_brown.png; sourceTree = "<group>"; };
 		96EF5E3A1D3C9FE1008CE6B2 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		96EF5E3B1D3C9FE1008CE6B2 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		96EF5E3D1D3CAAED008CE6B2 /* HTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMainViewController.h; sourceTree = "<group>"; };
+		96EF5E3E1D3CAAED008CE6B2 /* HTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMainViewController.m; sourceTree = "<group>"; };
+		96EF5E3F1D3CAAED008CE6B2 /* HTMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTMainViewController.xib; sourceTree = "<group>"; };
+		96EF5E421D3CAAF4008CE6B2 /* HTSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTSceneViewController.xib; sourceTree = "<group>"; };
+		96EF5E451D3CABB9008CE6B2 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
+		96EF5E461D3CABB9008CE6B2 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,15 +254,20 @@
 				35F3E03517D80D13009EFFF2 /* AppDelegate.h */,
 				35F3E03617D80D13009EFFF2 /* AppDelegate.m */,
 				35F3E03817D80D13009EFFF2 /* Main.storyboard */,
-				35F3E03B17D80D13009EFFF2 /* ViewController.h */,
-				35F3E03C17D80D13009EFFF2 /* ViewController.m */,
-				35F3E03E17D80D13009EFFF2 /* MyScene.h */,
-				35F3E03F17D80D13009EFFF2 /* MyScene.m */,
+				96EF5E3D1D3CAAED008CE6B2 /* HTMainViewController.h */,
+				96EF5E3E1D3CAAED008CE6B2 /* HTMainViewController.m */,
+				96EF5E3F1D3CAAED008CE6B2 /* HTMainViewController.xib */,
+				35F3E03B17D80D13009EFFF2 /* HTSceneViewController.h */,
+				35F3E03C17D80D13009EFFF2 /* HTSceneViewController.m */,
+				96EF5E421D3CAAF4008CE6B2 /* HTSceneViewController.xib */,
+				35F3E03E17D80D13009EFFF2 /* MainScene.h */,
+				35F3E03F17D80D13009EFFF2 /* MainScene.m */,
 				96EF5E3A1D3C9FE1008CE6B2 /* GameOverScene.h */,
 				96EF5E3B1D3C9FE1008CE6B2 /* GameOverScene.m */,
 				35F3E04117D80D13009EFFF2 /* Spaceship.png */,
 				35F3E04317D80D13009EFFF2 /* Images.xcassets */,
 				960725CD1D3896B90092E14A /* Resource */,
+				96EF5E441D3CABB9008CE6B2 /* Sounds */,
 				35F3E02D17D80D13009EFFF2 /* Supporting Files */,
 			);
 			path = DragDrop;
@@ -367,6 +383,15 @@
 			path = real;
 			sourceTree = "<group>";
 		};
+		96EF5E441D3CABB9008CE6B2 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				96EF5E451D3CABB9008CE6B2 /* background-music-aac.caf */,
+				96EF5E461D3CABB9008CE6B2 /* pew-pew-lei.caf */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,11 +487,13 @@
 				9607262D1D38983D0092E14A /* fairy_trapped.png in Resources */,
 				960726201D38983D0092E14A /* bg_score_lightbrown.png in Resources */,
 				35F3E03117D80D13009EFFF2 /* InfoPlist.strings in Resources */,
+				96EF5E431D3CAAF4008CE6B2 /* HTSceneViewController.xib in Resources */,
 				9607263C1D38983D0092E14A /* image_trash04.png in Resources */,
 				9607262F1D38983D0092E14A /* image_animal02.png in Resources */,
 				960726221D38983D0092E14A /* bg_ui_brown.png in Resources */,
 				9607261F1D38983D0092E14A /* bg_score_lightbrown.9.png in Resources */,
 				960725E11D3896B90092E14A /* bird@2x.png in Resources */,
+				96EF5E471D3CABB9008CE6B2 /* background-music-aac.caf in Resources */,
 				9607261D1D38983D0092E14A /* bg_score_brown.9.png in Resources */,
 				960726271D38983D0092E14A /* button_pause02_off.png in Resources */,
 				35F3E04417D80D13009EFFF2 /* Images.xcassets in Resources */,
@@ -487,6 +514,7 @@
 				9607261E1D38983D0092E14A /* bg_score_brown.png in Resources */,
 				960726211D38983D0092E14A /* bg_ui_brown.9.png in Resources */,
 				9607263E1D38983D0092E14A /* image_trash06.png in Resources */,
+				96EF5E411D3CAAED008CE6B2 /* HTMainViewController.xib in Resources */,
 				960725E01D3896B90092E14A /* bird.png in Resources */,
 				960725DE1D3896B90092E14A /* background.jpg in Resources */,
 				960725E81D3896B90092E14A /* turtle.png in Resources */,
@@ -499,6 +527,7 @@
 				9607263D1D38983D0092E14A /* image_trash05.png in Resources */,
 				960726311D38983D0092E14A /* image_heart_on.png in Resources */,
 				960726361D38983D0092E14A /* image_small_trash04.png in Resources */,
+				96EF5E481D3CABB9008CE6B2 /* pew-pew-lei.caf in Resources */,
 				960726261D38983D0092E14A /* button_pause01_on.png in Resources */,
 				9607261B1D38983D0092E14A /* bg_game02.jpg in Resources */,
 				9607262B1D38983D0092E14A /* fairy_free_01.png in Resources */,
@@ -524,10 +553,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				96EF5E3C1D3C9FE1008CE6B2 /* GameOverScene.m in Sources */,
-				35F3E04017D80D13009EFFF2 /* MyScene.m in Sources */,
-				35F3E03D17D80D13009EFFF2 /* ViewController.m in Sources */,
+				35F3E04017D80D13009EFFF2 /* MainScene.m in Sources */,
+				35F3E03D17D80D13009EFFF2 /* HTSceneViewController.m in Sources */,
 				35F3E03717D80D13009EFFF2 /* AppDelegate.m in Sources */,
 				35F3E03317D80D13009EFFF2 /* main.m in Sources */,
+				96EF5E401D3CAAED008CE6B2 /* HTMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

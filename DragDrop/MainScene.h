@@ -8,8 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-static const NSInteger duration = 100;
+// 遊戲時間
+static const NSInteger duration = 50;
 
-@interface MyScene : SKScene <SKPhysicsContactDelegate, UIAlertViewDelegate>
+@interface MainScene : SKScene <SKPhysicsContactDelegate, UIAlertViewDelegate>
 
 @end

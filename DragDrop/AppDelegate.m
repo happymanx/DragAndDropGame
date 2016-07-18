@@ -10,9 +10,20 @@
 
 @implementation AppDelegate
 
++(AppDelegate *)sharedAppDelegate
+{
+    return (id)[[UIApplication sharedApplication] delegate];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.mainVC = [[HTMainViewController alloc] init];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.mainVC];
+    nc.navigationBarHidden = YES;
+    
+    self.window.rootViewController = nc;
+    [self.window makeKeyWindow];
+    
     return YES;
 }
 							

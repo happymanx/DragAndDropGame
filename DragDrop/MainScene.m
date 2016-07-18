@@ -6,14 +6,15 @@
 //  Copyright (c) 2013 Razeware LLC. All rights reserved.
 //
 
-#import "MyScene.h"
+#import "MainScene.h"
 #import "GameOverScene.h"
+#import "AppDelegate.h"
 
 static const uint32_t binCategory       =  0x1 << 0;
 static const uint32_t trashCategory     =  0x1 << 2;
 static const uint32_t playerCategory    =  0x1 << 1;
 
-@interface MyScene () 
+@interface MainScene () 
  
 @property (nonatomic, strong) SKSpriteNode *background;
 @property (nonatomic, strong) SKSpriteNode *selectedNode;
@@ -36,7 +37,7 @@ static const uint32_t playerCategory    =  0x1 << 1;
 
 static NSString * const kAnimationName = @"movable";
 
-@implementation MyScene
+@implementation MainScene
 
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -354,15 +355,8 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     else {// 遊戲結束
         self.second = 0;
         
-        // 記錄分數
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        [ud setObject:@(duration - self.second) forKey:@"HTNowScore"];
-        // 記錄最高分數
-        NSNumber *greatestScore = [ud objectForKey:@"HTGreatestScore"];
-        if (duration - self.second < [greatestScore integerValue]) {
-            [ud setObject:@(duration - self.second) forKey:@"HTGreatestScore"];
-        }
-        [ud synchronize];
+        // 記錄分數和最高分數
+        [self recordScore];
 
         SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
         SKScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
@@ -394,7 +388,7 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     }
     if (buttonIndex == 1) {// 跳回首頁
         [self.timer invalidate];
-//        [[AppDelegate sharedAppDelegate].mainVC.sceneVC backAction];
+        [[AppDelegate sharedAppDelegate].mainVC.sceneVC backAction];
     }
 }
 
@@ -418,19 +412,13 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     {
         self.monstersDestroyed++;
         NSLog(@"Destroyed: %li", self.monstersDestroyed);
+        [self runAction:[SKAction playSoundFileNamed:@"pew-pew-lei.caf" waitForCompletion:NO]];
         [self bin:(SKSpriteNode *) firstBody.node didCollideWithTrash:(SKSpriteNode *) secondBody.node];
         
         // 如果垃圾被清空
         if (self.monstersCount == self.monstersDestroyed) {
-            // 記錄分數
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setObject:@(duration - self.second) forKey:@"HTNowScore"];
-            // 記錄最高分數
-            NSNumber *greatestScore = [ud objectForKey:@"HTGreatestScore"];
-            if (duration - self.second < [greatestScore integerValue]) {
-                [ud setObject:@(duration - self.second) forKey:@"HTGreatestScore"];
-            }
-            [ud synchronize];
+            // 記錄分數和最高分數
+            [self recordScore];
 
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             SKScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
@@ -440,13 +428,34 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         }
     }
     
-    // 小精靈與鬼相撞
+    // 小精靈與垃圾相撞
     if ((firstBody.categoryBitMask & playerCategory) != 0 &&
         (secondBody.categoryBitMask & trashCategory) != 0)
     {
         self.monstersKept++;
         NSLog(@"++: %li", self.monstersKept);
-//        [self player:(SKSpriteNode *) firstBody.node didCollideWithTrash:(SKSpriteNode *) secondBody.node];
+        // 剩下十秒開大絕
+        if (self.second <= 10) {
+            [self player:(SKSpriteNode *) firstBody.node didCollideWithTrash:(SKSpriteNode *) secondBody.node];
+            
+            self.monstersDestroyed++;
+            NSLog(@"Destroyed: %li", self.monstersDestroyed);
+            [self runAction:[SKAction playSoundFileNamed:@"pew-pew-lei.caf" waitForCompletion:NO]];
+            [self bin:(SKSpriteNode *) firstBody.node didCollideWithTrash:(SKSpriteNode *) secondBody.node];
+            
+            // 如果垃圾被清空
+            if (self.monstersCount == self.monstersDestroyed) {
+                // 記錄分數和最高分數
+                [self recordScore];
+                
+                SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+                SKScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
+                [self.view presentScene:gameOverScene transition: reveal];
+                
+                [self.timer invalidate];
+            }
+
+        }
         // 如果已經被垃圾擋住
         if (self.monstersKept > 0) {
             self.player.texture = [SKTexture textureWithImageNamed:@"fairy_trapped.png"];
@@ -469,7 +478,7 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         secondBody = contact.bodyA;
     }
     
-    // 小精靈與鬼相撞
+    // 小精靈與垃圾相撞
     if ((firstBody.categoryBitMask & playerCategory) != 0 &&
         (secondBody.categoryBitMask & trashCategory) != 0)
     {
@@ -489,6 +498,23 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
 
 - (void)player:(SKSpriteNode *)player didCollideWithTrash:(SKSpriteNode *)trash {
     [trash removeFromParent];
+}
+
+// 記錄分數和最高分數
+-(void)recordScore
+{
+    // 記錄分數
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:@(duration - self.second) forKey:@"HTNowScore"];
+    // 記錄最高分數
+    NSNumber *greatestScore = [ud objectForKey:@"HTGreatestScore"];
+    if (!greatestScore) {
+        greatestScore = @(duration);
+    }
+    if (duration - self.second <= [greatestScore integerValue]) {
+        [ud setObject:@(duration - self.second) forKey:@"HTGreatestScore"];
+    }
+    [ud synchronize];
 }
 
 @end
