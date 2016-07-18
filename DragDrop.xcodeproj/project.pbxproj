@@ -82,6 +82,7 @@
 		960726421D38983D0092E14A /* word_score_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 960726151D38983D0092E14A /* word_score_green.png */; };
 		960726431D38983D0092E14A /* word_time_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 960726161D38983D0092E14A /* word_time_blue.png */; };
 		960726441D38983D0092E14A /* word_time_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 960726171D38983D0092E14A /* word_time_brown.png */; };
+		96EF5E3C1D3C9FE1008CE6B2 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EF5E3B1D3C9FE1008CE6B2 /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,8 @@
 		960726151D38983D0092E14A /* word_score_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = word_score_green.png; sourceTree = "<group>"; };
 		960726161D38983D0092E14A /* word_time_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = word_time_blue.png; sourceTree = "<group>"; };
 		960726171D38983D0092E14A /* word_time_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = word_time_brown.png; sourceTree = "<group>"; };
+		96EF5E3A1D3C9FE1008CE6B2 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		96EF5E3B1D3C9FE1008CE6B2 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,8 @@
 				35F3E03C17D80D13009EFFF2 /* ViewController.m */,
 				35F3E03E17D80D13009EFFF2 /* MyScene.h */,
 				35F3E03F17D80D13009EFFF2 /* MyScene.m */,
+				96EF5E3A1D3C9FE1008CE6B2 /* GameOverScene.h */,
+				96EF5E3B1D3C9FE1008CE6B2 /* GameOverScene.m */,
 				35F3E04117D80D13009EFFF2 /* Spaceship.png */,
 				35F3E04317D80D13009EFFF2 /* Images.xcassets */,
 				960725CD1D3896B90092E14A /* Resource */,
@@ -518,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96EF5E3C1D3C9FE1008CE6B2 /* GameOverScene.m in Sources */,
 				35F3E04017D80D13009EFFF2 /* MyScene.m in Sources */,
 				35F3E03D17D80D13009EFFF2 /* ViewController.m in Sources */,
 				35F3E03717D80D13009EFFF2 /* AppDelegate.m in Sources */,

@@ -7,10 +7,11 @@
 //
 
 #import "MyScene.h"
+#import "GameOverScene.h"
 
-static const uint32_t projectileCategory     =  0x1 << 0;
-static const uint32_t monsterCategory        =  0x1 << 2;
-static const uint32_t playerCategory         =  0x1 << 1;
+static const uint32_t binCategory       =  0x1 << 0;
+static const uint32_t trashCategory     =  0x1 << 2;
+static const uint32_t playerCategory    =  0x1 << 1;
 
 @interface MyScene () 
  
@@ -28,6 +29,8 @@ static const uint32_t playerCategory         =  0x1 << 1;
 @property (nonatomic) SKLabelNode *timeNumberLabel;
 @property (nonatomic) SKSpriteNode *timeNameLabel;
 @property (nonatomic) SKSpriteNode *player;
+@property (nonatomic) SKSpriteNode *leftBin;
+@property (nonatomic) SKSpriteNode *rightBin;
 
 @end
 
@@ -55,8 +58,8 @@ static NSString * const kAnimationName = @"movable";
         self.player.physicsBody.dynamic = NO;
         self.player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.player.size];
         self.player.physicsBody.categoryBitMask = playerCategory;
-        self.player.physicsBody.contactTestBitMask = monsterCategory;
-        self.player.physicsBody.collisionBitMask = monsterCategory;
+        self.player.physicsBody.contactTestBitMask = trashCategory;
+        self.player.physicsBody.collisionBitMask = 0;
         self.player.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
         [self addChild:self.player];
@@ -71,6 +74,14 @@ static NSString * const kAnimationName = @"movable";
         // 生成時間數字
         self.timeNumberLabel = [self timeNumberNode];
         [self addChild:self.timeNumberLabel];
+        
+        // 生成左邊垃圾桶
+        self.leftBin = [self leftBinNode];
+        [self addChild:self.leftBin];
+        
+        // 生成右邊垃圾桶
+        self.rightBin = [self rightBinNode];
+        [self addChild:self.rightBin];
 
         // 生成計時器
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
@@ -136,11 +147,11 @@ static NSString * const kAnimationName = @"movable";
     self.lastSpawnTimeInterval += timeSinceLast;
     if (self.lastSpawnTimeInterval > 1) {
         self.lastSpawnTimeInterval = 0;
-        [self addMonster];
+        [self addTrash];
     }
 }
 
-- (void)addMonster {
+- (void)addTrash {
     
     self.monstersCount++;
     // Create sprite
@@ -170,18 +181,18 @@ static NSString * const kAnimationName = @"movable";
     monster.name = kAnimationName;
     monster.size = CGSizeMake(60, 60);
     monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size]; // 1
-    monster.physicsBody.dynamic = YES; // 2
-    monster.physicsBody.categoryBitMask = monsterCategory; // 3
-    monster.physicsBody.contactTestBitMask = projectileCategory; // 4
-    monster.physicsBody.collisionBitMask = playerCategory; // 5
+    monster.physicsBody.dynamic = NO; // 2
+    monster.physicsBody.categoryBitMask = trashCategory; // 3
+    monster.physicsBody.contactTestBitMask = playerCategory; // 4
+    monster.physicsBody.collisionBitMask = 0; // 5
     
-    int minX = 0 + monster.size.width / 2;
-    int maxX = self.frame.size.width + monster.size.width / 2;
+    int minX = 100 + monster.size.width / 2;
+    int maxX = self.frame.size.width - 100 - monster.size.width / 2;
     int rangeX = maxX - minX;
     int actualX = (arc4random() % rangeX) + minX;
     
     int minY = 0 + monster.size.height / 2;
-    int maxY = self.frame.size.height + monster.size.height / 2;
+    int maxY = self.frame.size.height - monster.size.height / 2;
     int rangeY = maxY - minY;
     int actualY = (arc4random() % rangeY) + minY;
     
@@ -301,6 +312,35 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
     return label;
 }
 
+- (SKSpriteNode *)leftBinNode
+{
+    SKSpriteNode *node = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeZero];
+    node.size = CGSizeMake(100, self.frame.size.height);
+    node.position = CGPointMake(node.frame.size.width/2,self.frame.size.height/2);
+    node.name = @"bin";
+    node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.size];
+    node.physicsBody.categoryBitMask = binCategory;
+    node.physicsBody.contactTestBitMask = trashCategory;
+    node.physicsBody.collisionBitMask = 0;
+    node.zPosition = -0.5;
+    return node;
+}
+
+- (SKSpriteNode *)rightBinNode
+{
+    SKSpriteNode *node = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeZero];
+    node.size = CGSizeMake(100, self.frame.size.height);
+    node.position = CGPointMake(self.frame.size.width - node.frame.size.width/2,self.frame.size.height/2);
+    node.name = @"bin";
+    node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.size];
+    node.physicsBody.categoryBitMask = binCategory;
+    node.physicsBody.contactTestBitMask = trashCategory;
+    node.physicsBody.collisionBitMask = 0;
+    node.zPosition = -0.5;
+    return node;
+}
+
+
 -(void)updateTime:(NSTimer *)timer
 {
     self.second--;
@@ -311,12 +351,15 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         self.second = 0;
     }
     
-    // 更換精靈圖
-    if (self.second % 2 == 1) {
-        self.player.texture = [SKTexture textureWithImageNamed:@"fairy_free_01.png"];
-    }
-    else {
-        self.player.texture = [SKTexture textureWithImageNamed:@"fairy_free_02.png"];
+    // 精靈沒有被垃圾擋住
+    if (self.monstersKept <= 0) {
+        // 更換精靈圖
+        if (self.second % 2 == 1) {
+            self.player.texture = [SKTexture textureWithImageNamed:@"fairy_free_01.png"];
+        }
+        else {
+            self.player.texture = [SKTexture textureWithImageNamed:@"fairy_free_02.png"];
+        }
     }
     
     NSLog(@"second: %li", (long)self.second);
@@ -350,23 +393,72 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         secondBody = contact.bodyA;
     }
     
-    if ((firstBody.categoryBitMask & projectileCategory) != 0 &&
-        (secondBody.categoryBitMask & monsterCategory) != 0)
+    if ((firstBody.categoryBitMask & binCategory) != 0 &&
+        (secondBody.categoryBitMask & trashCategory) != 0)
     {
-//        [self projectile:(SKSpriteNode *) firstBody.node didCollideWithMonster:(SKSpriteNode *) secondBody.node];
+        self.monstersDestroyed++;
+        NSLog(@"Destroyed: %li", self.monstersDestroyed);
+        [self bin:(SKSpriteNode *) firstBody.node didCollideWithTrash:(SKSpriteNode *) secondBody.node];
+        
+        // 如果垃圾被清空
+        if (self.monstersCount == self.monstersDestroyed) {
+            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
+            [self.view presentScene:gameOverScene transition: reveal];
+            
+            [self.timer invalidate];
+        }
     }
     
     // 小精靈與鬼相撞
     if ((firstBody.categoryBitMask & playerCategory) != 0 &&
-        (secondBody.categoryBitMask & monsterCategory) != 0)
+        (secondBody.categoryBitMask & trashCategory) != 0)
     {
         self.monstersKept++;
-        [self player:(SKSpriteNode *) firstBody.node didCollideWithMonster:(SKSpriteNode *) secondBody.node];
+        NSLog(@"++: %li", self.monstersKept);
+//        [self player:(SKSpriteNode *) firstBody.node didCollideWithTrash:(SKSpriteNode *) secondBody.node];
+        // 如果已經被垃圾擋住
+        if (self.monstersKept > 0) {
+            self.player.texture = [SKTexture textureWithImageNamed:@"fairy_trapped.png"];
+        }
     }
 }
 
-- (void)player:(SKSpriteNode *)player didCollideWithMonster:(SKSpriteNode *)monster {
-    [monster removeFromParent];
+-(void)didEndContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else
+    {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    // 小精靈與鬼相撞
+    if ((firstBody.categoryBitMask & playerCategory) != 0 &&
+        (secondBody.categoryBitMask & trashCategory) != 0)
+    {
+        self.monstersKept--;
+        NSLog(@"--: %li", self.monstersKept);
+        
+        // 如果已經沒被垃圾擋住
+        if (self.monstersKept <= 0) {
+//            self.player.texture = [SKTexture textureWithImageNamed:@"fairy_free_01.png"];
+        }
+    }
+}
+
+- (void)bin:(SKSpriteNode *)bin didCollideWithTrash:(SKSpriteNode *)trash {
+    [trash runAction:[SKAction fadeOutWithDuration:0.1]];
+}
+
+- (void)player:(SKSpriteNode *)player didCollideWithTrash:(SKSpriteNode *)trash {
+    [trash removeFromParent];
 }
 
 @end
