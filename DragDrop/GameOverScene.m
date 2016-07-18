@@ -25,35 +25,6 @@
 -(id)initWithSize:(CGSize)size won:(BOOL)won {
     if (self = [super initWithSize:size]) {
 
-//        self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:1.0];
-//
-//        NSString *message;
-//        if (won) {
-//            message = @"You Won! Happy~";
-//        } else {
-//            message = @"You Lose :[ Sad~";
-//        }
-//
-//        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-//        label.text = message;
-//        label.fontSize = 40;
-//        label.fontColor = [SKColor blackColor];
-//        label.position = CGPointMake(self.size.width/2, self.size.height/2);
-//        [self addChild:label];
-//
-//        [self runAction:
-//            [SKAction sequence:@[
-//                [SKAction waitForDuration:3.0],
-//                [SKAction runBlock:^{
-//
-//                    SKTransition *reveal = [SKTransition doorsOpenHorizontalWithDuration:0.5];
-//                    MainScene *mainScene = [[MainScene alloc] initWithSize:self.size];
-//                    mainScene.mainSceneDelegate = self;
-//                    [self.view presentScene:mainScene transition:reveal];
-//                }]
-//            ]]
-//        ];
-        
         // 生成背景
         [self setupBackground];
         // 生成板塊
@@ -111,10 +82,10 @@
 
 -(void)setupScoreTitle
 {
-    SKSpriteNode *board = [SKSpriteNode spriteNodeWithImageNamed:@"word_score_brown.png"];
+    SKSpriteNode *board = [SKSpriteNode spriteNodeWithImageNamed:@"word_time_brown.png"];
     board.size = CGSizeMake(66, 36);
     board.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame)-55);
-    board.name = @"word_score_brown";
+    board.name = @"word_time_brown";
     [self addChild:board];
 }
 
@@ -158,7 +129,10 @@
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     label.zPosition = 0.5;
     label.text = [nowScore description];
-    label.fontSize = 80;
+    if ([nowScore integerValue] == duration) {// 沒有成功，時間到
+        label.text = @"失敗";
+    }
+    label.fontSize = 70;
     label.fontColor = [SKColor colorWithRed:255.0/255 green:204.0/255 blue:51.0/255 alpha:1];
     label.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)+15);
     return label;

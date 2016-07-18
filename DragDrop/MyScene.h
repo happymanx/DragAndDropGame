@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+static const NSInteger duration = 100;
+
 @interface MyScene : SKScene <SKPhysicsContactDelegate, UIAlertViewDelegate>
 
 @end

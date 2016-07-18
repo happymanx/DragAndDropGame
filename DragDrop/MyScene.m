@@ -85,7 +85,7 @@ static NSString * const kAnimationName = @"movable";
 
         // 生成計時器
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
-        self.second = 100;
+        self.second = duration;
     }
  
     return self;
@@ -228,7 +228,6 @@ float degToRad(float degree) {
     [[self view] addGestureRecognizer:gestureRecognizer];
 }
 
-
 //- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 //	UITouch *touch = [touches anyObject];
 //	CGPoint positionInScene = [touch locationInNode:self];
@@ -343,12 +342,33 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
 
 -(void)updateTime:(NSTimer *)timer
 {
+    // 如果遊戲暫停
+    if (self.scene.isPaused == YES) {
+        return;
+    }
+    
     self.second--;
     if (self.second >= 0) {
         self.timeNumberLabel.text = [@(self.second) description];
     }
-    else {
+    else {// 遊戲結束
         self.second = 0;
+        
+        // 記錄分數
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:@(duration - self.second) forKey:@"HTNowScore"];
+        // 記錄最高分數
+        NSNumber *greatestScore = [ud objectForKey:@"HTGreatestScore"];
+        if (duration - self.second < [greatestScore integerValue]) {
+            [ud setObject:@(duration - self.second) forKey:@"HTGreatestScore"];
+        }
+        [ud synchronize];
+
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+        SKScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
+        [self.view presentScene:gameOverScene transition: reveal];
+        
+        [self.timer invalidate];
     }
     
     // 精靈沒有被垃圾擋住
@@ -402,8 +422,18 @@ CGPoint mult(const CGPoint v, const CGFloat s) {
         
         // 如果垃圾被清空
         if (self.monstersCount == self.monstersDestroyed) {
+            // 記錄分數
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            [ud setObject:@(duration - self.second) forKey:@"HTNowScore"];
+            // 記錄最高分數
+            NSNumber *greatestScore = [ud objectForKey:@"HTGreatestScore"];
+            if (duration - self.second < [greatestScore integerValue]) {
+                [ud setObject:@(duration - self.second) forKey:@"HTGreatestScore"];
+            }
+            [ud synchronize];
+
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-            SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
+            SKScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size won:NO];
             [self.view presentScene:gameOverScene transition: reveal];
             
             [self.timer invalidate];
