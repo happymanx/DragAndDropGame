@@ -439,6 +439,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Razeware LLC";
 				TargetAttributes = {
+					35F3E02017D80D13009EFFF2 = {
+						DevelopmentTeam = 4FSF69NSQS;
+					};
 					35F3E04817D80D13009EFFF2 = {
 						TestTargetID = 35F3E02017D80D13009EFFF2;
 					};
@@ -680,10 +683,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DragDrop/DragDrop-Prefix.pch";
 				INFOPLIST_FILE = "DragDrop/DragDrop-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.heineken.internal-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "af241be1-f3c8-4b18-97e1-74a91fbc302f";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -694,10 +700,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DragDrop/DragDrop-Prefix.pch";
 				INFOPLIST_FILE = "DragDrop/DragDrop-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.heineken.internal-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "955a66e9-e84c-4269-9379-f4b00e1ca9e1";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
